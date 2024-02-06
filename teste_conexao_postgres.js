@@ -47,8 +47,14 @@ async function main() {
     // Mescla as credenciais recuperadas com as configurações padrão
     const mergedConfig = { ...dbConfig, ...credentials };
 
-    // Cria uma nova instância do cliente do PostgreSQL
-    const client = new Client(mergedConfig);
+    const client = new Client({
+        user: mergedConfig.username,
+        host: dbConfig.host,
+        database: dbConfig.database,
+        password: mergedConfig.password,
+        port: dbConfig.port,
+        ssl: dbConfig.ssl
+      });
     console.log(mergedConfig);
     // Conecta ao banco de dados
     await client.connect();
