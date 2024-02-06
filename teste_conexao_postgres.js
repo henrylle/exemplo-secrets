@@ -7,9 +7,9 @@ const secretName = 'rds!db-e8cb0dc4-d321-4af4-854a-2b1e75cb55d9';
 
 // Configurações de conexão padrão para evitar erros antes de recuperar as credenciais
 const dbConfig = {
-  username: 'default',
+  user: 'default',
   host: 'db-com-secret.chqwgcm08bm6.us-east-1.rds.amazonaws.com',
-  database: 'default',
+  database: 'postgres',
   password: 'default',
   port: '5432',
   ssl: {
