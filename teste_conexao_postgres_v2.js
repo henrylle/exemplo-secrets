@@ -19,13 +19,14 @@ const dbConfig = {
 };
 
 
+
+// Cria um novo client do AWS Secrets Manager
+const secretsManagerClient = new SecretsManagerClient({ region });
+
 async function imprimirSecrets(){
   var secrets = await getSecrets();
   console.log(secrets);
 }
-
-// Cria um novo client do AWS Secrets Manager
-const secretsManagerClient = new SecretsManagerClient({ region });
 
 // Função para obter as credenciais do Secrets Manager
 async function getSecrets() {
