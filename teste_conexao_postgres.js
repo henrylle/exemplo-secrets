@@ -7,11 +7,15 @@ const secretName = 'rds!db-e8cb0dc4-d321-4af4-854a-2b1e75cb55d9';
 
 // Configurações de conexão padrão para evitar erros antes de recuperar as credenciais
 const dbConfig = {
-  user: 'default',
+  username: 'default',
   host: 'db-com-secret.chqwgcm08bm6.us-east-1.rds.amazonaws.com',
   database: 'default',
   password: 'default',
   port: '5432',
+  ssl: {
+    require: true,
+    rejectUnauthorized: false
+  }
 };
 
 // Cria um novo cliente do AWS Secrets Manager
@@ -45,7 +49,7 @@ async function main() {
 
     // Cria uma nova instância do cliente do PostgreSQL
     const client = new Client(mergedConfig);
-
+    console.log(mergedConfig);
     // Conecta ao banco de dados
     await client.connect();
     console.log('Conexão bem-sucedida!');
