@@ -61,7 +61,7 @@ async function main() {
     console.log('Conexão bem-sucedida!');
 
     // Exemplo de execução de uma consulta
-    const queryResult = await client.query('SELECT NOW()');
+    const queryResult = await client.query('SELECT schema_name FROM information_schema.schemata');
     console.log('Resultado da consulta:', queryResult.rows[0]);
 
     // Fecha a conexão com o banco de dados
