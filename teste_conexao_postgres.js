@@ -1,3 +1,5 @@
+const { Client } = require('pg');
+
 // Configurações de conexão padrão para evitar erros antes de recuperar as credenciais
 const dbConfig = {
   user: 'postgres',
@@ -17,7 +19,7 @@ async function main() {
     // Obtém as credenciais do Secrets Manager
     
     const client = new Client(dbConfig);
-    
+
     // Conecta ao banco de dados
     await client.connect();
     console.log('Conexão bem-sucedida!');
