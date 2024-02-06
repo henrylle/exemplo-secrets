@@ -1,5 +1,9 @@
 #!/bin/sh
 
+secret_string=$(aws secretsmanager get-secret-value --secret-id MEU_SEGREDO --version-stage AWSCURRENT --query SecretString --output text)
+username=$(echo $secret_string | jq -r '.username')
+password=$(echo $secret_string | jq -r '.password')
+
 # Variáveis de conexão
 DB_HOST="RDS_ENDPOINT"
 DB_PORT="5432"

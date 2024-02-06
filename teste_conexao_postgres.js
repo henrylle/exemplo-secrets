@@ -16,8 +16,6 @@ const dbConfig = {
 // Função principal para conectar ao banco de dados
 async function main() {
   try {
-    // Obtém as credenciais do Secrets Manager
-    
     const client = new Client(dbConfig);
 
     // Conecta ao banco de dados
