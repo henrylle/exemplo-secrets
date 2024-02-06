@@ -1,4 +1,4 @@
-const AWS = require('aws-sdk');
+const { SecretsManagerClient, GetSecretValueCommand } = require("@aws-sdk/client-secrets-manager");
 const { Client } = require('pg');
 
 // Configurações do AWS Secrets Manager
@@ -15,12 +15,14 @@ const dbConfig = {
 };
 
 // Cria um novo cliente do AWS Secrets Manager
-const secretsManager = new AWS.SecretsManager({ region });
+const secretsManagerClient = new SecretsManagerClient({ region });
 
 // Função para obter as credenciais do Secrets Manager
 async function getSecrets() {
   try {
-    const data = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
+    const command = new GetSecretValueCommand({ SecretId: secretName });
+    const data = await secretsManagerClient.send(command);
+
     if ('SecretString' in data) {
       return JSON.parse(data.SecretString);
     } else {
